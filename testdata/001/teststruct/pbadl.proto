@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+// package teststruct;
+
+option go_package = "github.com/millergarym/pbadl/pb-gen/teststruct";
+
+import "ext/ext.proto";
+
+option (pbadl.ext.aldc_ast_cli) = {
+    searchdir : "adlcsss"
+    searchdir : "abc"
+    outputdir : "123"
+    file: "structtest.adl"
+};

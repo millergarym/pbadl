@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package pbadl.ext;
+
+option go_package = "github.com/millergarym/pbadl/pb-gen/ext";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.FileOptions {
+    AdlcAstCli aldc_ast_cli = 60000;
+}
+
+message AdlcAstCli {
+    // Add the specifed directory to the ADL searchpath
+    repeated string  searchdir = 1;            
+    // Set the directory where generated code is written
+    string outputdir = 2;         
+    // Add the specifed adl file extension to merged on loading
+    string merge_adlext = 3;         
+    // Print extra diagnostic information, especially about files being read/written
+    bool verbose = 4;              
+    // Don't update files that haven't changed
+    bool no_overwrite = 5;
+    // Write a manifest file recording generated files
+    string manifest = 6;            
+    // The json file to which all adl modules will be written
+    string combined_output = 7;
+    // Source files
+    repeated string file = 8;
+    // Directory to run aldc from
+    string working_directory = 9;   
+}
