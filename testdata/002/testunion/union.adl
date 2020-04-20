@@ -1,0 +1,11 @@
+module phadl.testunion {
+
+union ADLSumType {
+    String A;
+    String B;
+    Int64 X;
+    Int64 Y;
+    Void Z;
+};
+
+};

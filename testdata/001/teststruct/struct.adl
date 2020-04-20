@@ -1,0 +1,10 @@
+module teststruct {
+
+struct ADLProductType {
+    String A;
+    String B;
+    Int64 X;
+    Int64 Y;
+};
+
+};

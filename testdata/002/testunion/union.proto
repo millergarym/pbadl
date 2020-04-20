@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package testunion;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/millergarym/pbadl/pb-gen/testunion";
+
+message SumType {
+    oneof union {
+        string A = 1;
+        string B = 2;
+        int64 X = 3;
+        sint64 Y = 4;
+        google.protobuf.Empty Z = 5;
+    }
+}
+
+message ProductType1 {
+    SumType S = 1;
+}
+
+message ProductType2 {
+    SumType S = 1;
+    SumType T = 2;
+}

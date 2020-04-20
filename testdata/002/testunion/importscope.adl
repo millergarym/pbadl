@@ -1,0 +1,5 @@
+module phadl.importscope {
+
+import sys.adlast.ScopedName;
+
+};

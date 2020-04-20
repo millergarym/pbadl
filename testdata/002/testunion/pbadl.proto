@@ -2,12 +2,12 @@ syntax = "proto3";
 
 // package teststruct;
 
-option go_package = "github.com/millergarym/pbadl/pb-gen/teststruct";
+option go_package = "github.com/millergarym/pbadl/pb-gen/testunion";
 
 import "ext/ext.proto";
 
 option (pbadl.ext.aldc_ast_cli) = {
     go_package_base: "github.com/millergarym/pbadl/pb-gen"
-    module: "teststruct"
-    file: "struct.adl"
+    module: "phadl.testunion"
+    file: "union.adl"
 };

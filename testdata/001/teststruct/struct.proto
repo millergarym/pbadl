@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package teststruct;
-
-option go_package = "github.com/millergarym/pbadl/pb-gen/teststruct";
-
-message ProductType {
-}
