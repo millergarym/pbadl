@@ -34,7 +34,7 @@ func main() {
 }
 
 func dump(fdesc *descriptorpb.FileDescriptorProto) {
-	return
+	// return
 	out, err := protojson.MarshalOptions{
 		// Multiline:     true,
 		Indent:        "  ",
@@ -61,11 +61,10 @@ func run() error {
 	}
 	wd, _ := os.Getwd()
 	for _, fdesc := range req.ProtoFile {
-		// dump(fdesc)
-
 		filename := fdesc.GetName()
 		q.Q(filename)
 		q.Q(wd)
+		// dump(fdesc)
 		adlc := proto.GetExtension(fdesc.Options, ext.E_AldcAstCli).(*ext.AdlcAstCli)
 		if adlc != nil {
 			tempd, err := ioutil.TempDir("", "phadl")
@@ -163,6 +162,41 @@ func run() error {
 		ParamFunc: flags.Set,
 	}
 
+	// Working method to include needed imports dynamically (ie epmty.proto)
+	// {
+	// 	// call protoc for well known needed protos
+	// 	tempd, err := ioutil.TempDir("", "protos")
+	// 	if err != nil {
+	// 		return fmt.Errorf("can't create temp dir %v", err)
+	// 	}
+	// 	combOut := filepath.Join(tempd, "empty.fds")
+	// 	cmd := exec.Command("protoc")
+	// 	cmd.Args = append(cmd.Args, []string{
+	// 		"--descriptor_set_out=" + combOut,
+	// 		"--include_source_info",
+	// 		"google/protobuf/empty.proto",
+	// 	}...)
+	// 	q.Q(combOut)
+	// 	protocO, err := cmd.CombinedOutput()
+	// 	if err != nil {
+	// 		fmt.Fprintf(os.Stderr, "adlc error\n%v\n%v\n", err, string(protocO))
+	// 	}
+	// 	fds, err := ioutil.ReadFile(combOut)
+	// 	if err != nil {
+	// 		fmt.Fprintf(os.Stderr, "error opening generated adl ast %v %v\n", combOut, err)
+	// 	}
+	// 	dfp := descriptorpb.FileDescriptorSet{}
+	// 	err = proto.Unmarshal(fds, &dfp)
+	// 	if err != nil {
+	// 		fmt.Fprintf(os.Stderr, "error parsing proto %v\n", err)
+	// 		q.Q(err)
+	// 	}
+	// 	// req.ProtoFile = append(req.ProtoFile, dfp.File[0])
+	// 	nfiles := []*descriptorpb.FileDescriptorProto{dfp.File[0]}
+	// 	nfiles = append(nfiles, req.ProtoFile...)
+	// 	req.ProtoFile = nfiles
+	// }
+
 	gen, err := opts.New(req)
 	if err != nil {
 		return err
@@ -170,7 +204,7 @@ func run() error {
 	for _, f := range gen.Files {
 		q.Q(f.Proto.GetName())
 		if f.Generate {
-			dump(f.Proto)
+			// dump(f.Proto)
 			// q.Q(f)
 			gengo.GenerateFile(gen, f)
 		}
