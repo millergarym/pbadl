@@ -85,10 +85,12 @@ func run() error {
 			adlcO, err := cmd.CombinedOutput()
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "adlc error\n%v\n%v\n", err, string(adlcO))
+				continue
 			}
 			astf, err := os.Open(combOut)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "error opening generated adl ast %v %v\n", combOut, err)
+				continue
 			}
 			modules := map[string]adl.Module{}
 			json.NewDecoder(astf).Decode(&modules)
@@ -149,7 +151,7 @@ func run() error {
 				// dump(fdp)
 			}
 		} else {
-			fmt.Fprintf(os.Stderr, "no ext.AdlcAstCli for %v\n", filename)
+			// fmt.Fprintf(os.Stderr, "no ext.AdlcAstCli for %v\n", filename)
 		}
 
 	}

@@ -5,6 +5,8 @@ syntax = "proto3";
 option go_package = "github.com/millergarym/pbadl/pb-gen/testunion";
 
 import "ext/ext.proto";
+// todo move import into code gen
+import "google/protobuf/empty.proto";
 
 option (pbadl.ext.aldc_ast_cli) = {
     go_package_base: "github.com/millergarym/pbadl/pb-gen"

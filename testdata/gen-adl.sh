@@ -11,11 +11,9 @@ mkdir -p gen-adl
 
 ( cd 001
 protoc -I ../../proto -I . --pbadl_out=paths=source_relative:../gen-adl \
-    teststruct/pbadl.proto \
-    teststruct/struct.proto
+    teststruct/pbadl.proto
 )
 ( cd 002
 protoc -I ../../proto -I . --pbadl_out=paths=source_relative:../gen-adl \
-    testunion/pbadl.proto \
-    testunion/union.proto
+    testunion/pbadl.proto
 )
